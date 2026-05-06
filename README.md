@@ -2,7 +2,7 @@
 
 Catálogo de livros disponíveis em um clube literário fictício, com login, cadastro e tabela de planos de assinatura.
 
-## Screenshots
+## Capturas de Tela
 
 ![Home](cardapio-literario/photos/inicio.png)
 
