@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Cardápio</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <style>
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color:azure;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            header {
+                background-color:azure;
+                color: #c195a0;
+                border-radius: 20px;
+                text-align: center;
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                color: #81626a;
+                margin-bottom: 5px;
+            }
+            
+
+            nav {
+                width: 25%;
+                border-radius: 8px;
+                background-color: #c195a0;
+                display: flex;
+                justify-content: center;
+                align-self: center;
+                gap: 20px;
+                padding: 12px;
+            }
+
+            nav a {
+                color: white;
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+            nav a:hover {
+                color: papayawhip;
+            }
+
+            main {
+                flex: 1;
+            }
+
+            .content-area {
+                display: flex;
+                align-items: flex-start;
+                gap: 20px;
+                max-width: 1100px;
+                margin: 40px auto 40px;
+                padding: 0 20px;
+            }
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                flex: 1;
+            }
+
+            .login {
+                width: 260px;
+                flex-shrink: 0;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                align-self: flex-start;
+            }
+
+            .login img {
+                width: 85%;
+                height: auto;
+                display: block;
+                margin: 20px auto;
+            }
+
+            .login-body {
+                padding: 20px;
+            }
+
+            .login-body h3 {
+                margin-bottom: 8px;
+                color: #81626a
+            }
+
+            .login-body p {
+                font-size: 0.85rem;
+                margin-bottom: 15px;
+                color: #c195a0
+            }
+
+            .login label {
+                font-size: 0.85rem;
+                color:#81626a;
+                display: flex;
+                justify-content: start;
+            }
+
+            .login-body input {
+                width: 100%;
+                padding: 8px 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                margin-top: 5px;
+                font-size: 0.85rem;
+            }
+
+            .login-body button {
+                width: 100%;
+                padding: 9px;
+                background-color: #efc0cc;
+                color:#81626a;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                margin-top: 10px;
+            }
+
+            .login-body button:hover {
+                background-color: #f5dfe6; 
+            }
+
+            .signup {
+                margin-top: 20px;
+                width: 260px;
+                flex-shrink: 0;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                align-self: flex-end;
+            }
+
+            .signup-body {
+                padding: 20px;
+            }
+
+            .signup img {
+                width: 55%;
+                height: auto;
+                display: block;
+                margin: 20px auto;
+            }
+
+            .signup-body h3 {
+                margin-bottom: 8px;
+                color: #81626a
+            }
+
+            .signup-body p {
+                font-size: 0.85rem;
+                margin-bottom: 15px;
+                color: #c195a0
+            }
+
+            .signup label {
+                font-size: 0.85rem;
+                color:#81626a;
+                display: flex;
+                justify-content: start;
+            }
+
+            .signup-body input {
+                width: 100%;
+                padding: 8px 10px;
+                border: 1px solid#ddd;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                margin-top: 5px;
+                font-size: 0.85rem;
+            }
+
+            .signup-body button {
+                width: 100%;
+                padding: 9px;
+                background-color: #efc0cc;
+                color: #81626a;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                margin-top: 10px;
+            }
+
+            .signup-body button:hover {
+                background-color: #f5dfe6;
+            }
+
+            .card {
+                background-color: white;
+                border-radius: 8px; 
+                padding: 20px; 
+                text-align: center; 
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+            }
+
+            .card h3 {
+                color: #81626a;
+                margin: 10px 0 5px;
+            }
+
+            .card p {
+                color: #c195a0;
+                font-size: 0.9rem;
+            }
+
+            .card img {
+                width: 150px;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            footer {
+                text-align: center;
+                padding: 5px 20px 20px;
+            }
+
+            footer nav {
+                width: 35%;
+                background-color: #c195a0;
+                border-radius: 8px;
+                margin: 0 auto 10px;
+            }
+
+            footer p {
+                font-size: 0.7rem;
+            }
+
+            .pricing {
+                max-width: 1100px;
+                margin: 0 auto 40px;
+                padding: 0 20px;
+                text-align: center;
+            }
+
+            .pricing-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 30px;
+                background-color: white;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            }
+
+            .pricing-table th {
+                background-color: #c195a0;
+                color: white;
+                padding: 12px 16px;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+
+            .pricing-table td {
+                padding: 12px 16px;
+                font-size: 0.85rem;
+                color: #81626a;
+                border-bottom: 1px solid #f0e8ea;
+            }
+
+            .pricing-table tr:last-child td {
+                border-bottom: none;
+            }
+
+            .pricing-table tr:hover td {
+                background-color: #fdf5f7;
+            }
+
+            .pricing-table td button {
+                padding: 6px 14px;
+                background-color: #efc0cc;
+                color: #81626a;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 0.85rem;
+            }
+
+            .pricing-table td button:hover {
+                background-color: #f5dfe6;
+            }
+
+            @media (max-width: 900px) {
+                .pricing-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (max-width: 500px) {
+                .pricing-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+
+            @media (max-width: 900px) {
+                .content-area {
+                    flex-direction: column;
+                }
+                .login {
+                    width: 100%;
+                }
+            }
+            @media (max-width: 700px) {
+                 .cards {
+                    grid-template-columns: repeat(2, 1fr); /* Mudam de 3 colunas para 2 colunas */
+                }
+            }
+
+            @media (max-width: 450px) {
+                .cards {
+                    grid-template-columns: 1fr; /* Uma coluna só */
+                }
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <header>
+            <h1>Cardápio Literário</h1>
+            <h4>Catálogo de livros disponíveis em nosso clube</h4>
+        </header>
+
+    <nav>
+        <a href="#">Romance</a>
+        <a href="#">Distopia</a>
+        <a href="#">Ensaio</a>
+        <a href="#">Biografia</a>
+    </nav>
+
+    <main>
+        <div class="content-area">
+
+            <aside>
+                <div class="login">
+                    <div class="login-image">
+                        <img src="https://freight.cargo.site/w/6600/q/75/i/f3ce602e3f8f37e7aadaee28b6aec9eeced0607d2ecc252a481179c7bb53eaab/02_Girlhood.png" alt="Livro Girlhood contracapa: 'Aos treze anos, já tinha me divorciado do meu corpo.'"/>
+                    </div>
+                    <div class="login-body">
+                        <h3>Login</h3>
+                        <p>Insira email e senha para logar e acessar benefícios</p>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Seu email" required>
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" placeholder="Sua senha" required>
+                        <button type="submit">Login</button>
+                    </div>
+                </div>
+
+                <div class="signup">
+                    <img src="https://d9hhrg4mnvzow.cloudfront.net/clube.taglivros.com/clubedaliv/8ed33d9d-1caixa-completa_109205w04h04t02m00h028.png" alt="Caixa cheia de livros do clube"/>
+                    <div class="signup-body">
+                        <h3>Cadastro</h3>
+                        <p>Cadastre-se em nossa loja, assine nosso clube</p>
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" placeholder="Seu primeiro nome" required>
+                        <label for="surname">Sobrenome:</label>
+                        <input type="text" id="surname" name="surname" placeholder="Seu sobrenome" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Seu email" required>
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" placeholder="Crie uma senha" required>
+                        <button type="submit">Cadastrar</button>
+                    </div>
+                </div>
+            </aside>
+
+
+            <section class="cards">
+                <div class="card">
+                    <img src="https://m.media-amazon.com/images/I/91GTd+sOkZL._AC_UF1000,1000_QL80_.jpg" alt="Livro Todos Os Nossos Ontens de Natália Ginzburg"/>
+                    <h3>Romance</h3>
+                    <p>Todos Os Nossos Ontens - Natália Ginzburg</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://m.media-amazon.com/images/I/81jAIzImSkL.jpg" alt="Livro As Alegrias da Maternidade de Buchi Emecheta"/>
+                    <h3>Romance</h3>
+                    <p>As Alegrias da Maternidade - Buchi Emecheta</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://www.taglivros.com/blog/wp-content/uploads/2022/03/classicos_mhudi.png" alt="Livro Mhudi de Sol Plaatje"/>
+                    <h3>Romance</h3>
+                    <p>Mhudi - Sol Plaatje</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://cejap.fflch.usp.br/sites/cejap.fflch.usp.br/files/Coração.png" alt="Livro Coração de Natsume Soseki"/>
+                    <h3>Romance</h3>
+                    <p>Coração - Natsume Soseki</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://site.taglivros.com/static/db0fc364aafc57acad9aae7db7db83bc/fad2e/cur_set_capa_ae5e5ae874.jpg" alt="Livro Oração para Desaparecer de Socorro Acioli"/>
+                    <h3>Romance</h3>
+                    <p>Oração para Desaparecer - Socorro Acioli</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://m.media-amazon.com/images/I/71ketKCJvLL.jpg" alt="Livro Aurora de Marcela Ceribelli"/>
+                    <h3>Ensaio</h3>
+                    <p>Aurora - Marcela Ceribelli</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://m.media-amazon.com/images/I/71+2J4iqWYL._UF1000,1000_QL80_.jpg" alt="Livro Sintomas de Marcela Ceribelli"/>
+                    <h3>Ensaio</h3>
+                    <p>Sintomas - Marcela Ceribelli</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://m.media-amazon.com/images/I/41drAi7ZHAL._AC_UF1000,1000_QL80_.jpg" alt="Livro Girlhood de Melissa Febos"/>
+                    <h3>Ensaio</h3>
+                    <p>Girlhood - Melissa Febos</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://site.taglivros.com/static/6e55bd09ab94c75427a1c3e8704c2d5e/fad2e/cur_fev_capa_e1b725721e.jpg" alt="Livro Migrações de Charlotte McConaghy"/>
+                    <h3>Distopia</h3>
+                    <p>Migrações - Charlotte McConaghy</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://m.media-amazon.com/images/I/81IKyAwkU7L.jpg" alt="Livro Eu Que Nunca Conheci Os Homens de Jacqueline Harpman"/>
+                    <h3>Distopia</h3>
+                    <p>Eu Que Nunca Conheci Os Homens - Jacqueline Harpman</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://livrariadavila.vtexassets.com/arquivos/ids/7552409/9788535932317.jpg?v=638926588082870000" alt="Livro Autobiografia de José Luís Peixoto"/>
+                    <h3>Biografia</h3>
+                    <p>Autobiografia - José Luís Peixoto</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPgJC9ck4PrMVuhrMLqYwMQeG8cCJJiw60n0KEyR1dpv6HlXtzCy2T78E8SkU47-lbyqarEmL7L0111s8QYpMDKcuQ8Gc58pOPJzgtKSAIyXJJMWbPtVabmH6jkyaqJzy7-MG-yTdqVEE/s1600/VIDA_E_PROEZAS_DE_ALEXIS_ZORBA_14846870179382SK1484687017B.jpg" alt="Livro Vida e Proezas de Aléxis Zorbás"/>
+                    <h3>Biografia</h3>
+                    <p>Vida e Proezas de Aléxis Zorbás - Nikos Kazantzákis</p>
+                </div>
+
+            </section>
+
+        </div>
+        </main>
+
+        <section class="pricing">
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Plano</th>
+                        <th>Preço</th>
+                        <th>Cobrança</th>
+                        <th>Benefícios</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mensal</td>
+                        <td>R$ 90,90/mês</td>
+                        <td>Todo mês</td>
+                        <td>1 livro por mês · Frete grátis · Cancele quando quiser</td>
+                        <td><button>Assinar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Trimestral</td>
+                        <td>R$ 242,90</td>
+                        <td>A cada 3 meses</td>
+                        <td>1 livro por mês · Frete grátis · Economia de 10%</td>
+                        <td><button>Assinar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Semestral</td>
+                        <td>R$ 425,90</td>
+                        <td>A cada 6 meses</td>
+                        <td>1 livro por mês · Frete grátis · Economia de 20%</td>
+                        <td><button>Assinar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Anual</td>
+                        <td>R$ 730,90</td>
+                        <td>Uma vez por ano</td>
+                        <td>1 livro por mês · Frete grátis · Economia de 30%</td>
+                        <td><button>Assinar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    <footer>
+
+        <nav>
+            <a href="#">Sobre</a>
+            <a href="#">Assine o Clube</a>
+            <a href="#">Contato</a>
+            <a href="#">Política de Privacidade</a>
+        </nav>
+
+        <p>&copy; 2026 Cardápio Literário - Todos os direitos reservados</p>
+
+    </footer>
+            
+    </body>
+</html>    
